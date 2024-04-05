@@ -2,6 +2,10 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Backend\AdminController;
+use App\Http\Controllers\Backend\ClerkController;
+use App\Http\Controllers\Backend\UserController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -28,4 +32,17 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
+/** Admin Routes */
+Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+
+
+/** Clerk Routes */
+Route::get('clerk/dashboard', [ClerkController::class, 'dashboard'])->name('clerk.dashboard');
+
+
+/** User Routes
+ * The user is directed to the dashboard path that it shows the view views/user/dashboard
+ */
+
+Route::get('/dashboard', [UserController::class, 'dashboard'])->name('dashboard');
